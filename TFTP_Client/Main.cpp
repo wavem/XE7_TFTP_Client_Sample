@@ -28,3 +28,33 @@ void __fastcall TFormMain::PrintMsg(UnicodeString _str) {
     memo->SetCursor(0, t_Idx);
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TFormMain::btn_ConnectClick(TObject *Sender)
+{
+	TFTP_Client->Active = true;
+    TFTP_Client->Connect();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::TFTP_ClientStatus(TObject *ASender, const TIdStatus AStatus,
+          const UnicodeString AStatusText)
+{
+	UnicodeString tempStr = L"";
+    tempStr = L"[STATUS] : ";
+    tempStr += AStatusText;
+    PrintMsg(tempStr);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::TFTP_ClientConnected(TObject *Sender)
+{
+	PrintMsg(L"On Connected");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormMain::TFTP_ClientDisconnected(TObject *Sender)
+{
+	PrintMsg(L"On Disconnected");
+}
+//---------------------------------------------------------------------------
+

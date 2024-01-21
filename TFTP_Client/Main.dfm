@@ -133,9 +133,22 @@ object FormMain: TFormMain
     Version = '3.4.1.0'
     WordWrap = wwNone
   end
+  object btn_Connect: TButton
+    Left = 48
+    Top = 48
+    Width = 75
+    Height = 25
+    Caption = 'Connect'
+    TabOrder = 1
+    OnClick = btn_ConnectClick
+  end
   object TFTP_Client: TIdTrivialFTP
+    OnStatus = TFTP_ClientStatus
+    Host = '192.168.45.70'
     Port = 69
     ReceiveTimeout = 4000
+    OnConnected = TFTP_ClientConnected
+    OnDisconnected = TFTP_ClientDisconnected
     Left = 480
     Top = 8
   end
